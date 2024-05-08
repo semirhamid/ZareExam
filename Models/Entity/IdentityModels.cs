@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 
@@ -5,13 +6,19 @@ namespace ZareExam.Models.Entity
 {
     public class AppUser : IdentityUser
     {
+        [Required]
         public string FirstName { get; set; }
-        public string MiddleName { get; set; }
-        public string LastName { get; set; }
-        public DateTime RegisteredDate { get; set; }
-        public DateTime BirthDate { get; set; }
         
-
+        public string MiddleName { get; set; }
+        
+        [Required]
+        public string LastName { get; set; }
+        
+        [Required]
+        public DateTime RegisteredDate { get; set; } = DateTime.Now;
+        
+        [Required]
+        public DateTime BirthDate { get; set; }
     }
 
 
