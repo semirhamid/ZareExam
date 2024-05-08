@@ -8,8 +8,6 @@ namespace ZareExam.Infrastructure.Db
     public class AuthDbContext : IdentityDbContext<AppUser>
     {
         public virtual DbSet<RefreshToken> RefreshTokens {get;set;}
-        // public  virtual DbSet<AppUser> AppUsers {get;set;}
-        // public  virtual DbSet<AppRole> AppRole {get;set;}
         public virtual DbSet<Student> Students {get; set;}
         public virtual DbSet<Department> Department {get; set;}
 
