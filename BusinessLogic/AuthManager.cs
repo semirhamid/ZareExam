@@ -87,6 +87,7 @@ namespace ZareExam.BusinessLogic
         public async Task<List<Claim>> GetValidClaims(AppUser user)
         {
             IdentityOptions _options = new IdentityOptions();
+            var userRoleName = await _userManager.GetRolesAsync(user);
             var claims = new List<Claim>
             {
                 new Claim("Id", user.Id),
@@ -95,7 +96,6 @@ namespace ZareExam.BusinessLogic
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(_options.ClaimsIdentity.UserIdClaimType, user.Id.ToString()),
                 new Claim(_options.ClaimsIdentity.UserNameClaimType, user.UserName),
-                // new Claim(_options.ClaimsIdentity.)
             };
 
             var userClaims = await _userManager.GetClaimsAsync(user);

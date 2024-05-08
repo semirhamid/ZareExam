@@ -29,7 +29,6 @@ namespace ZareExam.Controller
         public async Task<IActionResult> Register([FromBody] UserRegistrationRequestDto user)
         {
 
-            // check i the user with the same email exist
             var existingUser = await _userManager.FindByEmailAsync(user.Email);
 
             if (existingUser != null)
