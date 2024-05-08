@@ -53,7 +53,7 @@ if (!Directory.Exists(logDirectory))
 
 using (var scope = app.Services.CreateScope())
 {
-    AppZareExameeder authZareExameeder = new AppZareExameeder();
+    AppDbSeeder authZareExameeder = new AppDbSeeder();
     await authZareExameeder.Seed(scope);
 }
 

@@ -6,9 +6,9 @@ using Newtonsoft.Json;
 
 namespace ZareExam.Infrastructure
 {
-    public class AppZareExameeder
+    public class AppDbSeeder
     {
-        public AppZareExameeder()
+        public AppDbSeeder()
         {
 
         }
@@ -17,7 +17,7 @@ namespace ZareExam.Infrastructure
 
         private async Task EnsureRolesSeed(AuthDbContext context, IServiceScope scope)
         {
-            var roles = new string[] { "student", "user"};
+            var roles = new string[] { "student", "user", "admin"};
             var _roleManager = scope.ServiceProvider.GetService<RoleManager<IdentityRole>>();
             foreach (var roleName in roles)
             {

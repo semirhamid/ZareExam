@@ -18,10 +18,7 @@ namespace ZareExam.Infrastructure
     {
         public static void ConfigureServices(IServiceCollection services, ConfigurationManager configuration)
         {
-            
-            // Enable asp controllers
-            services.AddControllers();
-            // enable Postgres database and attach it to AuthDbContext that works only for security
+
             services.AddDbContext<AuthDbContext>(options =>
                             options.UseSqlServer(
                                 configuration.GetConnectionString("DefaultConnection")));
@@ -29,7 +26,7 @@ namespace ZareExam.Infrastructure
             // setup dependency injections
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped<AuthDbContext>();
-            services.AddScoped<AppZareExameeder>();
+            services.AddScoped<AppDbSeeder>();
             services.AddScoped<IAuthManager, AuthManager>();
             services.AddScoped<UserManager<AppUser>>();
             services.AddScoped<RoleManager<IdentityRole>>();
@@ -71,12 +68,6 @@ namespace ZareExam.Infrastructure
                 jwt.SaveToken = true;
                 jwt.TokenValidationParameters = tokenValidationParameters;
             });
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy("ViewItemsPolicy",
-                    policy => policy.RequireClaim("ViewItems"));
-            });
-
             // enable end point explorer for Swagger
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
