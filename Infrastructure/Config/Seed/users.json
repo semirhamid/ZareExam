@@ -1,0 +1,27 @@
+[
+    {
+        "firstName": "Semir",
+        "middleName": "Hamid",
+        "lastName": "Jemal",
+        "registeredDate": "",
+        "birthDate": "1994-02-01",
+        "userName": "admin",
+        "email": "admin@gmail.com",
+        "Phone": "0911528092",
+        "roles": "student",
+        "Password": "Admin123#"
+      },
+
+      {
+        "firstName": "John",
+        "middleName": "Doe",
+        "lastName": "Man",
+        "registeredDate": "",
+        "birthDate": "1994-02-01",
+        "userName": "john",
+        "email": "john@gmail.com",
+        "Phone": "0922334455",
+        "roles": "user",
+        "Password": "JohnDoe123#"
+      }
+]
