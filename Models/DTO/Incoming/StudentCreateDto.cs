@@ -22,7 +22,5 @@ namespace ZareExam.DTOs
         [Required]
         public int DepartmentId { get; set; }
 
-        [Required]
-        public int UserId { get; set; }
     }
 }

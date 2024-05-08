@@ -1,16 +1,23 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace ZareExam.DTOs
 {
-
-    public class StudentReadDTO
+    public class StudentUpdateDTO
     {
-        public int Id { get; set; }
+        [StringLength(50)]
         public string Name { get; set; }
+
+        [EmailAddress]
         public string Email { get; set; }
+
         public string StudentId { get; set; }
+
+        [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
+
         public int DepartmentId { get; set; }
-        public string UserId { get; set; } 
+
+        public string UserId { get; set; }
     }
 }

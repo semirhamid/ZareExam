@@ -31,7 +31,7 @@ namespace ZareExam.Models
         public Department Department { get; set; }
 
         [Required]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public AppUser User { get; set; }
     }
 
