@@ -30,6 +30,9 @@ namespace ZareExam.Infrastructure
             services.AddScoped<IAuthManager, AuthManager>();
             services.AddScoped<UserManager<AppUser>>();
             services.AddScoped<RoleManager<IdentityRole>>();
+            services.AddScoped<IStudentInterface, StudentManager>();
+            services.AddScoped<IDepartmentInterface, DepartmentManager>();
+            
 
             services.AddCors(p => p.AddPolicy("corsapp", builder =>
             {
@@ -43,7 +46,7 @@ namespace ZareExam.Infrastructure
 
             // jwt key
             services.Configure<JwtConfig>(configuration.GetSection("JwtConfig"));
-            var key = Encoding.ASCII.GetBytes(configuration["JwtConfig:Secret"]);
+            var key = Encoding.ASCII.GetBytes(configuration["JwtConfig:Secret"]!);
 
             // setup JWT authentication policy
             var tokenValidationParameters = new TokenValidationParameters

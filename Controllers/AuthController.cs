@@ -3,6 +3,7 @@ using ZareExam.Models.DTO;
 using ZareExam.Models.Entity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using AutoMapper;
 
 
 namespace ZareExam.Controller
@@ -14,14 +15,18 @@ namespace ZareExam.Controller
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly IAuthManager _authManager;
+        private readonly IMapper _mapper;
 
         public AuthController(
             UserManager<AppUser> userManager,
-            IAuthManager authManager
+            IAuthManager authManager,
+            IMapper mapper
+
         )
         {
             _userManager = userManager;
             _authManager = authManager;
+            _mapper = mapper;
         }
 
         [HttpPost]
@@ -42,14 +47,8 @@ namespace ZareExam.Controller
                 });
             }
 
-            var newUser = new AppUser()
-            {
-                FirstName = user.FirstName,
-                MiddleName = user.MiddleName,
-                LastName = user.LastName,
-                Email = user.Email,
-                UserName = user.Email,
-            };
+            var newUser = _mapper.Map<AppUser>(user);
+            newUser.UserName = user.Email;
             var isCreated = await _userManager.CreateAsync(newUser, user.Password);
             if (isCreated.Succeeded)
             {

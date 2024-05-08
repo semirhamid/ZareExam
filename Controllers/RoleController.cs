@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
+using AutoMapper;
 
 namespace ZareExam.Controller
 {
@@ -15,20 +15,23 @@ namespace ZareExam.Controller
     [Route("api/[controller]")]
     public class RoleController : ControllerBase
     {
+
         private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         protected readonly ILogger<RoleController> _logger;
-
+        private readonly IMapper _mapper;
 
         public RoleController(
             UserManager<AppUser> userManager,
             RoleManager<IdentityRole> roleManager,
-            ILogger<RoleController> logger
+            ILogger<RoleController> logger,
+            IMapper mapper
         )
         {
             _userManager = userManager;
             _logger = logger;
             _roleManager = roleManager;
+            _mapper = mapper;
         }
 
         [HttpGet("roles")]
@@ -68,7 +71,8 @@ namespace ZareExam.Controller
         public async Task<IActionResult> GetAllUsers()
         {
             var users = await _userManager.Users.ToListAsync();
-            return Ok(users);
+            var mappedUsers = _mapper.Map<List<UserDto>>(users);
+            return Ok(mappedUsers);
         }
 
         [HttpPost]
