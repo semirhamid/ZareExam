@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using ZareExam.Interface;
 
 namespace ZareExam.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class DepartmentsController : ControllerBase
